@@ -1,0 +1,12 @@
+{
+  "title": "Formation Front-End",
+  "author": "Rossi Oddet",
+  "plugins": [
+    "auto-summary"
+  ],
+  "ignores": [
+    "_book",
+    "node_modules",
+    "sources"
+  ]
+}
