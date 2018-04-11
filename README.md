@@ -6,12 +6,12 @@
 
 
 ## Contexte
-...
+(en cours de rédaction)
 
 
 ## Objectif
 
-...
+(en cours de rédaction)
 
 
 ## Un mot sur l'auteur
