@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>ES2015 · Formation ESNEXT</title>
+        <title>Paramètre du reste (rest operator) · Formation ESNEXT</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="01-let.html" />
+    <link rel="next" href="07-classe.html" />
     
     
-    <link rel="prev" href="../" />
+    <link rel="prev" href="05-valeur-par-defaut.html" />
     
 
     </head>
@@ -102,7 +102,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="./">
+        <li class="chapter " data-level="1.2" data-path="./">
             
                 <a href="./">
             
@@ -181,7 +181,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.6" data-path="06-parametres-du-reste.html">
+        <li class="chapter active" data-level="1.2.6" data-path="06-parametres-du-reste.html">
             
                 <a href="06-parametres-du-reste.html">
             
@@ -346,7 +346,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >ES2015</a>
+        <a href=".." >Paramètre du reste (rest operator)</a>
     </h1>
 </div>
 
@@ -361,22 +361,43 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="es2015">ES2015</h1>
-<p>JavaScript est des impl&#xE9;mentations d&apos;une sp&#xE9;cification standardis&#xE9;e : ECMAScript.</p>
-<p>En 2015, une nouvelle version du standard est publi&#xE9;e : ECMAScript 6, ECMAScript 2015, ES6 ou encore ES2015.</p>
-<h2 id="les-nouveaut&#xE9;s">Les nouveaut&#xE9;s</h2>
-<ul>
-<li>Constantes (mot cl&#xE9; <code>const</code>)</li>
-<li>Variable avec la port&#xE9;e bloc (mot cl&#xE9; <code>let</code>)</li>
-<li>Raccourci de cr&#xE9;ation d&apos;objets</li>
-<li>Template de String</li>
-<li>Fonction fl&#xEA;ch&#xE9;e</li>
-<li>Affectation destructur&#xE9;e</li>
-<li>Promesses</li>
-<li>Valeur par d&#xE9;faut</li>
-<li>Set et Map</li>
-<li>Modules</li>
-</ul>
+                                <h1 id="param&#xE8;tre-du-reste-rest-operator">Param&#xE8;tre du reste (rest operator)</h1>
+<h2 id="probl&#xE9;matique">Probl&#xE9;matique</h2>
+<p>En JavaScript, il est toujours possible de passer le nombre d&apos;arguments souhait&#xE9;s &#xE0; une fonction.</p>
+<p>Les diff&#xE9;rentes valeurs peuvent est r&#xE9;cup&#xE9;r&#xE9;es via une variable sp&#xE9;ciale  <code>arguments</code>.</p>
+<p><code>arguments</code> n&apos;est pas un v&#xE9;ritable tableau (pas de m&#xE9;thode <code>forEach</code> par exemple) .</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">afficher</span>(<span class="hljs-params">value</span>) </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i&lt; <span class="hljs-built_in">arguments</span>.length; i++) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">arguments</span>[i]);
+    }
+}
+
+afficher(<span class="hljs-string">&apos;Robert&apos;</span>, <span class="hljs-string">&apos;Julien&apos;</span>, <span class="hljs-string">&apos;Jean&apos;</span>);
+<span class="hljs-comment">// Robert</span>
+<span class="hljs-comment">// Julien</span>
+<span class="hljs-comment">// Jean</span>
+</code></pre>
+<h2 id="syntaxe-es2015">Syntaxe ES2015</h2>
+<p>ES2015 apporte une nouvelle syntaxe.</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">afficher</span>(<span class="hljs-params">...values</span>) </span>{
+
+    <span class="hljs-comment">// values est un v&#xE9;ritable tableau</span>
+    <span class="hljs-comment">// elle poss&#xE8;de la m&#xE9;thode forEach</span>
+    values.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">val</span>)</span>{
+        <span class="hljs-built_in">console</span>.log(val);
+    });
+}
+afficher(<span class="hljs-string">&apos;Robert&apos;</span>, <span class="hljs-string">&apos;Julien&apos;</span>, <span class="hljs-string">&apos;Jean&apos;</span>);
+<span class="hljs-comment">// Robert</span>
+<span class="hljs-comment">// Julien</span>
+<span class="hljs-comment">// Jean</span>
+</code></pre>
+<p>Le param&#xE8;tre du reste peut s&apos;associer &#xE0; une affectation d&#xE9;structur&#xE9;e.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> tab = [<span class="hljs-number">10</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>,<span class="hljs-number">40</span>,<span class="hljs-number">50</span>];
+<span class="hljs-keyword">let</span> [maValeur, ...leResteDesValeurs] = tab;
+<span class="hljs-built_in">console</span>.log(maValeur); <span class="hljs-comment">// 10</span>
+<span class="hljs-built_in">console</span>.log(leResteDesValeurs); <span class="hljs-comment">// [20, 30, 40, 50]</span>
+</code></pre>
 
                                 
                                 </section>
@@ -404,12 +425,12 @@
 
             
                 
-                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                <a href="05-valeur-par-defaut.html" class="navigation navigation-prev " aria-label="Previous page: Valeur par défaut">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="01-let.html" class="navigation navigation-next " aria-label="Next page: let">
+                <a href="07-classe.html" class="navigation navigation-next " aria-label="Next page: Classe">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -420,7 +441,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ES2015","level":"1.2","depth":1,"next":{"title":"let","level":"1.2.1","depth":2,"path":"01-ES2015/01-let.md","ref":"01-ES2015/01-let.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["auto-summary"],"ignores":["_book","node_modules","sources"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"auto-summary":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Rossi Oddet","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Formation ESNEXT","gitbook":"*"},"file":{"path":"01-ES2015/README.md","mtime":"2018-04-11T09:41:15.804Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-11T09:42:14.946Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Paramètre du reste (rest operator)","level":"1.2.6","depth":2,"next":{"title":"Classe","level":"1.2.7","depth":2,"path":"01-ES2015/07-classe.md","ref":"01-ES2015/07-classe.md","articles":[]},"previous":{"title":"Valeur par défaut","level":"1.2.5","depth":2,"path":"01-ES2015/05-valeur-par-defaut.md","ref":"01-ES2015/05-valeur-par-defaut.md","articles":[]},"dir":"ltr"},"config":{"plugins":["auto-summary"],"ignores":["_book","node_modules","sources"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"auto-summary":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Rossi Oddet","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Formation ESNEXT","gitbook":"*"},"file":{"path":"01-ES2015/06-parametres-du-reste.md","mtime":"2018-04-11T09:41:15.804Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-11T09:42:14.946Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

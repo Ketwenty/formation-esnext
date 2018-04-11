@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>ES2015 · Formation ESNEXT</title>
+        <title>Affectation destructurée · Formation ESNEXT</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="01-let.html" />
+    <link rel="next" href="05-valeur-par-defaut.html" />
     
     
-    <link rel="prev" href="../" />
+    <link rel="prev" href="03-creer-objet.html" />
     
 
     </head>
@@ -102,7 +102,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="./">
+        <li class="chapter " data-level="1.2" data-path="./">
             
                 <a href="./">
             
@@ -155,7 +155,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.4" data-path="04-affectation-destructuree.html">
+        <li class="chapter active" data-level="1.2.4" data-path="04-affectation-destructuree.html">
             
                 <a href="04-affectation-destructuree.html">
             
@@ -346,7 +346,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >ES2015</a>
+        <a href=".." >Affectation destructurée</a>
     </h1>
 </div>
 
@@ -361,22 +361,66 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="es2015">ES2015</h1>
-<p>JavaScript est des impl&#xE9;mentations d&apos;une sp&#xE9;cification standardis&#xE9;e : ECMAScript.</p>
-<p>En 2015, une nouvelle version du standard est publi&#xE9;e : ECMAScript 6, ECMAScript 2015, ES6 ou encore ES2015.</p>
-<h2 id="les-nouveaut&#xE9;s">Les nouveaut&#xE9;s</h2>
-<ul>
-<li>Constantes (mot cl&#xE9; <code>const</code>)</li>
-<li>Variable avec la port&#xE9;e bloc (mot cl&#xE9; <code>let</code>)</li>
-<li>Raccourci de cr&#xE9;ation d&apos;objets</li>
-<li>Template de String</li>
-<li>Fonction fl&#xEA;ch&#xE9;e</li>
-<li>Affectation destructur&#xE9;e</li>
-<li>Promesses</li>
-<li>Valeur par d&#xE9;faut</li>
-<li>Set et Map</li>
-<li>Modules</li>
-</ul>
+                                <h1 id="affectation-destructur&#xE9;e">Affectation destructur&#xE9;e</h1>
+<p>L&apos;affectation destructur&#xE9;e est un raccourci permettant d&apos;affecter des variables &#xE0; partir d&apos;objets.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// soit un objet p1</span>
+<span class="hljs-keyword">let</span> p1 = {  nom: <span class="hljs-string">&apos;Robert&apos;</span>, prenom: <span class="hljs-string">&apos;Julien&apos;</span> };
+
+<span class="hljs-comment">// extraction des valeurs de l&apos;objet p1</span>
+<span class="hljs-comment">// dans des variables *nomPersonne* et *prenomPersonne*.</span>
+<span class="hljs-keyword">let</span> {
+    nom: nomPersonne,
+    prenom: prenomPersonne
+} = p1;
+
+<span class="hljs-built_in">console</span>.log(nomPersonne); <span class="hljs-comment">// Robert</span>
+<span class="hljs-built_in">console</span>.log(prenomPersonne); <span class="hljs-comment">// Julien</span>
+</code></pre>
+<p>Si les variables portent les m&#xEA;mes noms que les propri&#xE9;t&#xE9;s, il est possible de faire plus concis.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> p1 = {
+    nom: <span class="hljs-string">&apos;Robert&apos;</span>,
+    prenom: <span class="hljs-string">&apos;Julien&apos;</span>
+};
+
+<span class="hljs-keyword">let</span> { nom, prenom } = p1;
+
+<span class="hljs-built_in">console</span>.log(nom); <span class="hljs-comment">// Robert</span>
+<span class="hljs-built_in">console</span>.log(prenom); <span class="hljs-comment">// Julien</span>
+</code></pre>
+<p>Pour r&#xE9;cup&#xE9;rer les valeurs des objets imbriqu&#xE9;s.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> p1 = {
+    nom: <span class="hljs-string">&apos;Robert&apos;</span>,
+    prenom: <span class="hljs-string">&apos;Julien&apos;</span>,
+    adresse : {
+        numero : <span class="hljs-number">2</span>,
+        rue: <span class="hljs-string">&apos;Angular&apos;</span>,
+        ville: <span class="hljs-string">&apos;Nantes&apos;</span>
+    }
+};
+
+<span class="hljs-keyword">let</span> { adresse: { ville } } = p1;
+
+<span class="hljs-built_in">console</span>.log(ville); <span class="hljs-comment">// Nantes</span>
+<span class="hljs-built_in">console</span>.log(adresse); <span class="hljs-comment">// ReferenceError: adresse is not defined</span>
+</code></pre>
+<p>L&apos;affectation destructur&#xE9;e fonctionne aussi avec des tableaux.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> tab = [<span class="hljs-number">10</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>,<span class="hljs-number">40</span>,<span class="hljs-number">50</span>];
+<span class="hljs-keyword">let</span> [maValeur, maSecondeValeur] = tab;
+
+<span class="hljs-built_in">console</span>.log(maValeur); <span class="hljs-comment">// 10</span>
+<span class="hljs-built_in">console</span>.log(maSecondeValeur); <span class="hljs-comment">// 20</span>
+</code></pre>
+<p>Combin&#xE9; avec le raccourci de cr&#xE9;ation d&#x2019;objet, cela donne :</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildPersonne</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">let</span> nom = <span class="hljs-string">&apos;Robert&apos;</span>;
+    <span class="hljs-keyword">let</span> prenom = <span class="hljs-string">&quot;Julien&quot;</span>;
+    <span class="hljs-keyword">return</span> { nom, prenom };
+}
+
+<span class="hljs-keyword">let</span> { prenom } = buildPersonne();
+
+<span class="hljs-built_in">console</span>.log(prenom); <span class="hljs-comment">// Julien</span>
+</code></pre>
 
                                 
                                 </section>
@@ -404,12 +448,12 @@
 
             
                 
-                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                <a href="03-creer-objet.html" class="navigation navigation-prev " aria-label="Previous page: Création des objets">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="01-let.html" class="navigation navigation-next " aria-label="Next page: let">
+                <a href="05-valeur-par-defaut.html" class="navigation navigation-next " aria-label="Next page: Valeur par défaut">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -420,7 +464,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ES2015","level":"1.2","depth":1,"next":{"title":"let","level":"1.2.1","depth":2,"path":"01-ES2015/01-let.md","ref":"01-ES2015/01-let.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["auto-summary"],"ignores":["_book","node_modules","sources"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"auto-summary":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Rossi Oddet","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Formation ESNEXT","gitbook":"*"},"file":{"path":"01-ES2015/README.md","mtime":"2018-04-11T09:41:15.804Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-11T09:42:14.946Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Affectation destructurée","level":"1.2.4","depth":2,"next":{"title":"Valeur par défaut","level":"1.2.5","depth":2,"path":"01-ES2015/05-valeur-par-defaut.md","ref":"01-ES2015/05-valeur-par-defaut.md","articles":[]},"previous":{"title":"Création des objets","level":"1.2.3","depth":2,"path":"01-ES2015/03-creer-objet.md","ref":"01-ES2015/03-creer-objet.md","articles":[]},"dir":"ltr"},"config":{"plugins":["auto-summary"],"ignores":["_book","node_modules","sources"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"auto-summary":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Rossi Oddet","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Formation ESNEXT","gitbook":"*"},"file":{"path":"01-ES2015/04-affectation-destructuree.md","mtime":"2018-04-11T09:41:15.804Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-11T09:42:14.946Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
