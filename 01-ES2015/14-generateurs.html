@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>let · Formation ESNEXT</title>
+        <title>Générateurs · Formation ESNEXT</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="02-const.html" />
+    <link rel="next" href="../02-ES2016/" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="13-modules.html" />
     
 
     </head>
@@ -116,7 +116,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.2.1" data-path="01-let.html">
+        <li class="chapter " data-level="1.2.1" data-path="01-let.html">
             
                 <a href="01-let.html">
             
@@ -285,7 +285,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.14" data-path="14-generateurs.html">
+        <li class="chapter active" data-level="1.2.14" data-path="14-generateurs.html">
             
                 <a href="14-generateurs.html">
             
@@ -359,7 +359,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >let</a>
+        <a href=".." >Générateurs</a>
     </h1>
 </div>
 
@@ -374,32 +374,35 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="let"><code>let</code></h1>
-<h2 id="probl&#xE9;matique-du-mot-cl&#xE9;-var">Probl&#xE9;matique du mot cl&#xE9; <code>var</code></h2>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getNomCompletAvecVar</span>(<span class="hljs-params">sexe</span>) </span>{
-        <span class="hljs-keyword">if</span>(sexe == <span class="hljs-string">&apos;M&apos;</span>) {
-            <span class="hljs-keyword">var</span> nomComplet = <span class="hljs-string">&apos;Robert&apos;</span>;
-        }
-        <span class="hljs-built_in">console</span>.log(nomComplet); <span class="hljs-comment">// affiche Robert</span>
-    }
-getNomCompletAvecVar(<span class="hljs-string">&apos;M&apos;</span>);
-</code></pre>
-<p>En javascript, il y a le concept de <strong>hoisting</strong> (remont&#xE9;e) qui d&#xE9;clare la variable en d&#xE9;but de fonction.
-La port&#xE9;e d&apos;une variable d&#xE9;clar&#xE9;e avec <code>var</code> est la fonction et non le bloc de code.</p>
-<h2 id="mot-cl&#xE9;-let">Mot cl&#xE9; <code>let</code></h2>
-<ul>
-<li><p>L&apos;acc&#xE8;s &#xE0; une variable peut d&#xE9;sormais &#xEA;tre restreint &#xE0; son bloc grace au mot cl&#xE9; <code>let</code>.</p>
-</li>
-<li><p><code>let</code> a &#xE9;t&#xE9; pens&#xE9; pour remplacer d&#xE9;finitivement <code>var</code> &#xE0; long terme.</p>
-</li>
-</ul>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getNomCompletAvecLet</span>(<span class="hljs-params">sexe</span>) </span>{
-    <span class="hljs-keyword">if</span>(sexe == <span class="hljs-string">&apos;M&apos;</span>) {
-        <span class="hljs-keyword">let</span> nomComplet = <span class="hljs-string">&apos;Robert&apos;</span>;
-    }
-    <span class="hljs-built_in">console</span>.log(nomComplet); <span class="hljs-comment">// Uncaught ReferenceError: nomComplet is not defined</span>
+                                <h1 id="g&#xE9;n&#xE9;rateurs">G&#xE9;n&#xE9;rateurs</h1>
+<p>Un g&#xE9;n&#xE9;rateur est un fonction qu&apos;il est possible de quitter puis reprendre.
+Le contexte de la fonction est sauvegard&#xE9; entre les reprises.</p>
+<p>Il se d&#xE9;clare avec le mot cl&#xE9; <code>function*</code>.</p>
+<p>Le mot cl&#xE9; <code>yield</code> permet de publier une valeur.</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">creerID</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> index = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">while</span>(index &lt; <span class="hljs-number">3</span>){
+    <span class="hljs-keyword">yield</span> index++;
+  }
 }
+
+<span class="hljs-comment">// gen est un objet Generator.</span>
+<span class="hljs-comment">// il poss&#xE8;de les m&#xE9;thodes suivantes :</span>
+<span class="hljs-comment">// * next() : r&#xE9;cup&#xE8;re la valeur publi&#xE9;e par yield</span>
+<span class="hljs-comment">// * return(): r&#xE9;cup&#xE8;re la valeur publi&#xE9;e et termine le g&#xE9;n&#xE9;rateur</span>
+<span class="hljs-comment">// * throw() : l&#xE8;ve une exception et termine le g&#xE9;n&#xE9;rateur</span>
+<span class="hljs-keyword">var</span> gen = creerID();
+
+<span class="hljs-built_in">console</span>.log(gen.next().value); <span class="hljs-comment">// 0</span>
+<span class="hljs-built_in">console</span>.log(gen.next().value); <span class="hljs-comment">// 1</span>
+<span class="hljs-built_in">console</span>.log(gen.next().value); <span class="hljs-comment">// 2</span>
+<span class="hljs-built_in">console</span>.log(gen.next().value); <span class="hljs-comment">// undefined</span>
 </code></pre>
+<p>Pour aller plus loin :</p>
+<ul>
+<li><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Instructions/function*" target="_blank">https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Instructions/function*</a>.</li>
+<li>Objet Generator : <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Generator" target="_blank">https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Generator</a></li>
+</ul>
 
                                 
                                 </section>
@@ -427,12 +430,12 @@ La port&#xE9;e d&apos;une variable d&#xE9;clar&#xE9;e avec <code>var</code> est 
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: ES2015">
+                <a href="13-modules.html" class="navigation navigation-prev " aria-label="Previous page: Modules">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="02-const.html" class="navigation navigation-next " aria-label="Next page: const">
+                <a href="../02-ES2016/" class="navigation navigation-next " aria-label="Next page: ES2016">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -443,7 +446,7 @@ La port&#xE9;e d&apos;une variable d&#xE9;clar&#xE9;e avec <code>var</code> est 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"let","level":"1.2.1","depth":2,"next":{"title":"const","level":"1.2.2","depth":2,"path":"01-ES2015/02-const.md","ref":"01-ES2015/02-const.md","articles":[]},"previous":{"title":"ES2015","level":"1.2","depth":1,"path":"01-ES2015/README.md","ref":"01-ES2015/README.md","articles":[{"title":"let","level":"1.2.1","depth":2,"path":"01-ES2015/01-let.md","ref":"01-ES2015/01-let.md","articles":[]},{"title":"const","level":"1.2.2","depth":2,"path":"01-ES2015/02-const.md","ref":"01-ES2015/02-const.md","articles":[]},{"title":"Création des objets","level":"1.2.3","depth":2,"path":"01-ES2015/03-creer-objet.md","ref":"01-ES2015/03-creer-objet.md","articles":[]},{"title":"Affectation destructurée","level":"1.2.4","depth":2,"path":"01-ES2015/04-affectation-destructuree.md","ref":"01-ES2015/04-affectation-destructuree.md","articles":[]},{"title":"Valeur par défaut","level":"1.2.5","depth":2,"path":"01-ES2015/05-valeur-par-defaut.md","ref":"01-ES2015/05-valeur-par-defaut.md","articles":[]},{"title":"Paramètre du reste (rest operator)","level":"1.2.6","depth":2,"path":"01-ES2015/06-parametres-du-reste.md","ref":"01-ES2015/06-parametres-du-reste.md","articles":[]},{"title":"Classe","level":"1.2.7","depth":2,"path":"01-ES2015/07-classe.md","ref":"01-ES2015/07-classe.md","articles":[]},{"title":"Promesses","level":"1.2.8","depth":2,"path":"01-ES2015/08-promesses.md","ref":"01-ES2015/08-promesses.md","articles":[]},{"title":"Fonction fléchée","level":"1.2.9","depth":2,"path":"01-ES2015/09-fonction-flechee.md","ref":"01-ES2015/09-fonction-flechee.md","articles":[]},{"title":"Set","level":"1.2.10","depth":2,"path":"01-ES2015/10-set.md","ref":"01-ES2015/10-set.md","articles":[]},{"title":"Map","level":"1.2.11","depth":2,"path":"01-ES2015/11-map.md","ref":"01-ES2015/11-map.md","articles":[]},{"title":"Template de String","level":"1.2.12","depth":2,"path":"01-ES2015/12-template-string.md","ref":"01-ES2015/12-template-string.md","articles":[]},{"title":"Modules","level":"1.2.13","depth":2,"path":"01-ES2015/13-modules.md","ref":"01-ES2015/13-modules.md","articles":[]},{"title":"Générateurs","level":"1.2.14","depth":2,"path":"01-ES2015/14-generateurs.md","ref":"01-ES2015/14-generateurs.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["auto-summary"],"ignores":["_book","node_modules","sources"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"auto-summary":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Rossi Oddet","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Formation ESNEXT","gitbook":"*"},"file":{"path":"01-ES2015/01-let.md","mtime":"2018-04-11T09:54:58.170Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-11T09:56:15.280Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Générateurs","level":"1.2.14","depth":2,"next":{"title":"ES2016","level":"1.3","depth":1,"path":"02-ES2016/README.md","ref":"02-ES2016/README.md","articles":[]},"previous":{"title":"Modules","level":"1.2.13","depth":2,"path":"01-ES2015/13-modules.md","ref":"01-ES2015/13-modules.md","articles":[]},"dir":"ltr"},"config":{"plugins":["auto-summary"],"ignores":["_book","node_modules","sources"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"auto-summary":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Rossi Oddet","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Formation ESNEXT","gitbook":"*"},"file":{"path":"01-ES2015/14-generateurs.md","mtime":"2018-04-11T09:54:58.174Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-11T09:56:15.280Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
