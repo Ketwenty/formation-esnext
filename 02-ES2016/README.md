@@ -1,3 +1,6 @@
-# ES2016
+# ECMAScript 2016
 
-(en cours de mise à jour)
+Les nouveautés :
+
+* La méthode `Array.prototype.includes()`
+* L'opérateur exponentiel `**`.
