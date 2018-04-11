@@ -12,5 +12,6 @@
   * [Map](01-ES2015/11-map.md)
   * [Template de String](01-ES2015/12-template-string.md)
   * [Modules](01-ES2015/13-modules.md)
+  * [Générateurs](01-ES2015/14-generateurs.md)
 * [ES2016](02-ES2016/README.md)
 * [ES2017](03-ES2017/README.md)
