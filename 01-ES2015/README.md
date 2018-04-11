@@ -1,4 +1,4 @@
-# ES2015
+# ECMAScript 2015
 
 JavaScript est des implémentations d'une spécification standardisée : ECMAScript.
 
