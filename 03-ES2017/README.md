@@ -1,3 +1,9 @@
-# ES2017
+# ECMAScript 2017
 
-(en cours de mise à jour)
+Les nouveautés :
+
+* Fonctions asynchrones (`async`/`await`)
+* `SharedArrayBuffer`, `Atomics`
+* Quelques modifications mineures:
+ * `Object.values`, `Object.entries`
+ * ...
