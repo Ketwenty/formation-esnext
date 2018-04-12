@@ -1,8 +1,6 @@
 # Formation ESNEXT
 
-* Version en ligne : http://www.dev-institut.fr/formation-esnext
-* Contribuer : https://github.com/DevInstitut/formation-esnext
-
+* Version en ligne : https://www.dev-institut.fr/formation-esnext
 
 
 ## Contexte
