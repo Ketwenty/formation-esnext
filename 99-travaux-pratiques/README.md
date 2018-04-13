@@ -128,18 +128,18 @@ Trip [rio-de-janeiro, Rio de Janeiro, img/rio-de-janeiro.jpg, undefined]
 * Créer une constante _freeTrip_, instance de la classe _FreeTrip_ avec les informations suivantes :
  * id : nantes
  * name : Nantes
- * imageUrl : img/nanges.jpg
+ * imageUrl : img/nantes.jpg
 * Afficher dans la console _freeTrip.toString()_
 
 ```
-Trip [nantes, Nantes, img/nanges.jpg, 0]
+Trip [nantes, Nantes, img/nantes.jpg, 0]
 ```
 
 * Redéfinir la méthode _toString()_ dont le résultat est la concaténation de la chaîne de caractères _Free_
 et du résultat de l'exécution de la méthode _toString()_ de la classe _Trip_.
 
 ```
-FreeTrip [nantes, Nantes, img/nanges.jpg, 0]
+FreeTrip [nantes, Nantes, img/nantes.jpg, 0]
 ```
 
 ## Promise, Set, Map, Arrow Function
@@ -153,7 +153,7 @@ class TripService {
         // TODO Set of 3 trips
         //
         // new Trip('paris', 'Paris', 'img/paris.jpg')
-        // new Trip('nantes', 'Nantes', 'img/nanges.jpg')
+        // new Trip('nantes', 'Nantes', 'img/nantes.jpg')
         // new Trip('rio-de-janeiro', 'Rio de Janeiro', 'img/rio-de-janeiro.jpg')
     }
 
