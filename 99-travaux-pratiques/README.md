@@ -139,7 +139,7 @@ Trip [nantes, Nantes, img/nantes.jpg, 0]
 et du résultat de l'exécution de la méthode _toString()_ de la classe _Trip_.
 
 ```
-FreeTrip [nantes, Nantes, img/nanges.jpg, 0]
+FreeTrip [nantes, Nantes, img/nantes.jpg, 0]
 ```
 
 ## Promise, Set, Map, Arrow Function
