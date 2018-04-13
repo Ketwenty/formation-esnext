@@ -8,7 +8,7 @@
 
 * Créer un répertoire _/es2015_.
 
-* Créer une script _/es2015/app.js_.
+* Créer un script _/es2015/app.js_.
 
 ```
 /es2015
