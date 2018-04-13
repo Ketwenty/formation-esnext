@@ -4,7 +4,7 @@
 ## Problématique
 En JavaScript, il est toujours possible de passer le nombre d'arguments souhaités à une fonction.
 
-Les différentes valeurs peuvent est récupérées via une variable spéciale  `arguments`.
+Les différentes valeurs peuvent être récupérées via une variable spéciale`arguments`.
 
 `arguments` n'est pas un véritable tableau (pas de méthode `forEach` par exemple) .
 
