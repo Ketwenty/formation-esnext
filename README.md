@@ -1,5 +1,7 @@
 # Formation ESNEXT
 
+[![Build Status](https://travis-ci.org/DevInstitut/formation-esnext.svg?branch=master)](https://travis-ci.org/DevInstitut/formation-esnext)
+
 * Version en ligne : https://www.dev-institut.fr/formation-esnext
 
 
